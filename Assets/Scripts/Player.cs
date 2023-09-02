@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
         // Calculate movement direction based on input
         Vector3 moveDirection = transform.forward * moveInput.y + transform.right * moveInput.x;
         moveDirection.Normalize();
+        // lock y positon
+        moveDirection.y = 0;
 
         // Move the player
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
@@ -40,5 +42,13 @@ public class Player : MonoBehaviour
 
         // rotate player
         transform.localEulerAngles += rotationVector;
+    }
+
+
+    // get that cursor out of here!!!
+    private void OnApplicationFocus(bool focus)
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

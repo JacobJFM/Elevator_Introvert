@@ -44,6 +44,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Debug_Button"",
+                    ""type"": ""Button"",
+                    ""id"": ""3bc0c401-6bd6-44f7-a3fe-ea5ced502af0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +121,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""658eb3ca-9ef4-4638-911c-dd0687a8c5a2"",
+                    ""path"": ""<Keyboard>/equals"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Debug_Button"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +142,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Main = asset.FindActionMap("Main", throwIfNotFound: true);
         m_Main_Walk = m_Main.FindAction("Walk", throwIfNotFound: true);
         m_Main_Rotate = m_Main.FindAction("Rotate", throwIfNotFound: true);
+        m_Main_Debug_Button = m_Main.FindAction("Debug_Button", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,12 +206,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IMainActions> m_MainActionsCallbackInterfaces = new List<IMainActions>();
     private readonly InputAction m_Main_Walk;
     private readonly InputAction m_Main_Rotate;
+    private readonly InputAction m_Main_Debug_Button;
     public struct MainActions
     {
         private @Controls m_Wrapper;
         public MainActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Walk => m_Wrapper.m_Main_Walk;
         public InputAction @Rotate => m_Wrapper.m_Main_Rotate;
+        public InputAction @Debug_Button => m_Wrapper.m_Main_Debug_Button;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -206,6 +229,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Rotate.started += instance.OnRotate;
             @Rotate.performed += instance.OnRotate;
             @Rotate.canceled += instance.OnRotate;
+            @Debug_Button.started += instance.OnDebug_Button;
+            @Debug_Button.performed += instance.OnDebug_Button;
+            @Debug_Button.canceled += instance.OnDebug_Button;
         }
 
         private void UnregisterCallbacks(IMainActions instance)
@@ -216,6 +242,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Rotate.started -= instance.OnRotate;
             @Rotate.performed -= instance.OnRotate;
             @Rotate.canceled -= instance.OnRotate;
+            @Debug_Button.started -= instance.OnDebug_Button;
+            @Debug_Button.performed -= instance.OnDebug_Button;
+            @Debug_Button.canceled -= instance.OnDebug_Button;
         }
 
         public void RemoveCallbacks(IMainActions instance)
@@ -237,5 +266,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnWalk(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
+        void OnDebug_Button(InputAction.CallbackContext context);
     }
 }
