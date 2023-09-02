@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 
     [Header("Movement Settings")]
     public float moveSpeed = 5.0f;
-    public float rotationSpeed = 5.0f;
+    public float rotationSpeed = 2.0f;
 
     private Vector2 moveInput;
     private Vector2 rotationInput;
@@ -33,10 +33,12 @@ public class Player : MonoBehaviour
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
 
         // calculate rotation angles
-        float rotationX = -rotationInput.y * rotationSpeed;
-        float rotationY = rotationInput.x * rotationSpeed;
+        float rotationX = -rotationInput.y;
+        float rotationY = rotationInput.x;
+        Vector3 rotationVector = new Vector3(rotationX, rotationY, 0);
+        rotationVector *= rotationSpeed * Time.deltaTime;
 
         // rotate player
-        transform.Rotate(rotationX, rotationY, 0);
+        transform.localEulerAngles += rotationVector;
     }
 }
