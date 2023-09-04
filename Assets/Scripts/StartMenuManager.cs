@@ -27,10 +27,16 @@ public class StartMenuManager : MonoBehaviour
     Color transitionColor = Color.black;
     [SerializeField]
     float multiplier = 0.5f;
+    [SerializeField]
+    GameObject aboutPanel;
 
-    // private void OnApplicationFocus(bool focusStatus) {
-    //     Cursor.lockState = CursorLockMode.Locked;
-    // }
+    void Awake()
+    {
+        if (aboutPanel.active)
+        {
+            aboutPanel.active = false;
+        }
+    }
 
     public void StartLevel(int levelNum)
     {
@@ -38,9 +44,19 @@ public class StartMenuManager : MonoBehaviour
         Initiate.Fade(sceneString, transitionColor, multiplier);
     }
 
-    public void About()
+    public void About(bool should_be_active)
     {
-
+        switch (should_be_active)
+        {
+            case true:
+                aboutPanel.SetActive(true);
+                break;
+            case false:
+                aboutPanel.SetActive(false);
+                break;
+            default:
+                break;
+        }
     }
 
     public void ExitGame()

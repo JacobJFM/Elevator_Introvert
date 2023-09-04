@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.1341472, b: 0.121078566, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -363,6 +363,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   rotationSpeed: 8
+  maxLookUpAngle: -50
+  maxLookDownAngle: 50
 --- !u!114 &28724759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9898,10 +9900,10 @@ SceneRoots:
   - {fileID: 543450653072329225}
   - {fileID: 8049793589746219522}
   - {fileID: 28724756}
+  - {fileID: 543450652753213089}
   - {fileID: 446302705}
   - {fileID: 387020559}
   - {fileID: 1032167968}
   - {fileID: 1701374115}
-  - {fileID: 543450652753213089}
   - {fileID: 6530925072168607373}
   - {fileID: 671208875}
