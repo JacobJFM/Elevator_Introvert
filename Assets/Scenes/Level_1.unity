@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 28724753}
   - component: {fileID: 28724757}
   - component: {fileID: 28724758}
+  - component: {fileID: 28724760}
   - component: {fileID: 28724759}
   m_Layer: 0
   m_Name: player_character
@@ -362,9 +363,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  rotationSpeed: 8
-  maxLookUpAngle: -50
-  maxLookDownAngle: 50
 --- !u!114 &28724759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,6 +418,20 @@ MonoBehaviour:
   m_DefaultActionMap: Main
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &28724760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28724752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1caeb0718ed714186992dd8a8e8390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 2
+  yRotationLimit: 88
 --- !u!1 &46680493
 GameObject:
   m_ObjectHideFlags: 0
