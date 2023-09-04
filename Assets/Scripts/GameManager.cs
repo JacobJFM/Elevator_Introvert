@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 // by @kurtdekker - to make a simple Unity singleton that has no
 // predefined data associated with it, eg, a high score manager.
