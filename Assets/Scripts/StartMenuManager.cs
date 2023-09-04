@@ -28,6 +28,10 @@ public class StartMenuManager : MonoBehaviour
     [SerializeField]
     float multiplier = 0.5f;
 
+    // private void OnApplicationFocus(bool focusStatus) {
+    //     Cursor.lockState = CursorLockMode.Locked;
+    // }
+
     public void StartLevel(int levelNum)
     {
         string sceneString = "Level_" + levelNum;

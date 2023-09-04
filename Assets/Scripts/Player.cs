@@ -45,10 +45,10 @@ public class Player : MonoBehaviour
     }
 
 
-    // get that cursor out of here!!!
-    private void OnApplicationFocus(bool focus)
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
+    // // get that cursor out of here!!!
+    // private void OnApplicationFocus(bool focus)
+    // {
+    //     Cursor.lockState = CursorLockMode.Locked;
+    //     Cursor.visible = false;
+    // }
 }
