@@ -32,9 +32,13 @@ public class StartMenuManager : MonoBehaviour
 
     void Awake()
     {
-        if (aboutPanel.active)
+        if (GameManager.Instance != null)
         {
-            aboutPanel.active = false;
+            Destroy(GameManager.Instance.gameObject);
+        }
+        if (aboutPanel.activeInHierarchy)
+        {
+            aboutPanel.SetActive(false);
         }
     }
 
@@ -55,7 +59,6 @@ public class StartMenuManager : MonoBehaviour
                 aboutPanel.SetActive(false);
                 break;
             default:
-                break;
         }
     }
 
