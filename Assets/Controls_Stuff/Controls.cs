@@ -53,6 +53,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""536a4c78-7581-43af-a7ba-1554712d7080"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +141,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Debug_Button"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d58f41a9-b04f-423d-8848-6191b1686f1a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef3c2bb2-9140-4059-959b-445e7a822c37"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +174,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Main_Walk = m_Main.FindAction("Walk", throwIfNotFound: true);
         m_Main_Rotate = m_Main.FindAction("Rotate", throwIfNotFound: true);
         m_Main_Debug_Button = m_Main.FindAction("Debug_Button", throwIfNotFound: true);
+        m_Main_Interact = m_Main.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +239,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Main_Walk;
     private readonly InputAction m_Main_Rotate;
     private readonly InputAction m_Main_Debug_Button;
+    private readonly InputAction m_Main_Interact;
     public struct MainActions
     {
         private @Controls m_Wrapper;
@@ -214,6 +247,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Walk => m_Wrapper.m_Main_Walk;
         public InputAction @Rotate => m_Wrapper.m_Main_Rotate;
         public InputAction @Debug_Button => m_Wrapper.m_Main_Debug_Button;
+        public InputAction @Interact => m_Wrapper.m_Main_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -232,6 +266,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Debug_Button.started += instance.OnDebug_Button;
             @Debug_Button.performed += instance.OnDebug_Button;
             @Debug_Button.canceled += instance.OnDebug_Button;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IMainActions instance)
@@ -245,6 +282,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Debug_Button.started -= instance.OnDebug_Button;
             @Debug_Button.performed -= instance.OnDebug_Button;
             @Debug_Button.canceled -= instance.OnDebug_Button;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IMainActions instance)
@@ -267,5 +307,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnWalk(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnDebug_Button(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

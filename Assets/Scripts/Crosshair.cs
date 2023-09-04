@@ -32,25 +32,14 @@ public class Crosshair : MonoBehaviour
         // Check if the ray hits an object on the specified layer within the max distance
         if (Physics.Raycast(ray, out hit, maxRaycastDistance, raycastLayer))
         {
-            //// Check if the hit object has the "Selectable" tag
-            //if (hit.collider.CompareTag(selectableTag))
-            //{
-            //    Debug.Log("WE GOT A HIT!!!");
-            //    // The crosshair is over a selectable object within range
-            //    isTargetInRange = true;
-            //}
-            //else
-            //{
-            //    // The crosshair is not over a selectable object within range
-            //    isTargetInRange = false;
-            //}
-
             isTargetInRange = true;
+            GameManager.Instance.ToggleInteract(hit.collider.gameObject);
         }
         else
         {
             // The ray didn't hit any object within range
             isTargetInRange = false;
+            GameManager.Instance.ToggleInteract();
         }
 
         // Update the crosshair appearance based on the target in range status
@@ -76,4 +65,5 @@ public class Crosshair : MonoBehaviour
             }
         }
     }
+
 }

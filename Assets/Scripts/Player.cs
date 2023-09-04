@@ -48,12 +48,4 @@ public class Player : MonoBehaviour
         // // rotate player
         // transform.localEulerAngles += rotationVector;
     }
-
-
-    // // get that cursor out of here!!!
-    // private void OnApplicationFocus(bool focus)
-    // {
-    //     Cursor.lockState = CursorLockMode.Locked;
-    //     Cursor.visible = false;
-    // }
 }

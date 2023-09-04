@@ -1,38 +1,8 @@
 using UnityEngine;
-
-// by @kurtdekker - to make a simple Unity singleton that has no
-// predefined data associated with it, eg, a high score manager.
-//
-// To use: access with GameManager.Instance
-//
-// To set up:
-//	- Copy this file (duplicate it)
-//	- rename class GameManager to your own classname
-//	- rename CS file too
-//
-// DO NOT PUT THIS IN ANY SCENE; this code auto-instantiates itself once.
-//
-// I do not recommend subclassing unless you really know what you're doing.
-
 public class GameManager : MonoBehaviour
 {
     // This is really the only blurb of code you need to implement a Unity singleton
-    private static GameManager _Instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            if (!_Instance)
-            {
-                _Instance = new GameObject().AddComponent<GameManager>();
-                // name it for easy recognition
-                _Instance.name = _Instance.GetType().ToString();
-                // mark root as DontDestroyOnLoad();
-                DontDestroyOnLoad(_Instance.gameObject);
-            }
-            return _Instance;
-        }
-    }
+    public static GameManager Instance { get; private set; }
 
     // implement your Awake, Start, Update, or other methods here...
 
@@ -42,11 +12,18 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Animator animator;
 
+    public Material buttonUnlitMat;
+    // public Material buttonLitMat;
+
+    bool canInteract = false;
+    GameObject currentHoveredObject;
     bool closingTime = false;
 
     private void Awake()
     {
+        Instance = this;
         Cursor.lockState = CursorLockMode.Locked;
+        Debug.Log("awake this late???");
         doors.SetActive(false);
     }
 
@@ -63,5 +40,32 @@ public class GameManager : MonoBehaviour
     {
         // change according to need
         closingTime = true;
+    }
+
+    public void ToggleInteract(GameObject hoveredObject = null)
+    {
+        if (hoveredObject == null)
+        {
+            canInteract = false;
+        }
+        else
+        {
+            canInteract = true;
+            currentHoveredObject = hoveredObject;
+        }
+    }
+
+    public void Interact()
+    {
+        if (canInteract)
+        {
+            // TODO: to have more interactions would need a better solution than checking for our one specific gameobject at the moment
+            if (currentHoveredObject.CompareTag("winButton"))
+            {
+                Debug.Log("it is indeed the button...");
+                buttonUnlitMat.EnableKeyword("_EMISSION");
+                closingTime = true;
+            }
+        }
     }
 }
