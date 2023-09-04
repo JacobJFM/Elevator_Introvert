@@ -5467,6 +5467,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doors: {fileID: 707744863}
   animator: {fileID: 919132148615925940}
+  enemyGuy: {fileID: 919132149037100059}
+  enemyDestination: -0.3
   buttonUnlitMat: {fileID: 2100000, guid: f5e54155c28ce4e4b9196ef820d2c33b, type: 2}
 --- !u!4 &1701374115
 Transform:

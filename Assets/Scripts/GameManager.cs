@@ -7,10 +7,11 @@ public class GameManager : MonoBehaviour
     // implement your Awake, Start, Update, or other methods here...
 
     // properties
-    [SerializeField]
-    GameObject doors;
-    [SerializeField]
-    Animator animator;
+    [SerializeField] GameObject doors;
+    [SerializeField] Animator animator;
+    [SerializeField] GameObject enemyGuy;
+    [SerializeField] float enemyDestination = -0.3f;
+
 
     public Material buttonUnlitMat;
     // public Material buttonLitMat;
@@ -33,6 +34,15 @@ public class GameManager : MonoBehaviour
         {
             doors.SetActive(true);
             animator.SetBool("closing_is_true", true);
+        }
+
+        CheckLoseCondition();
+    }
+
+    void CheckLoseCondition()
+    {
+        if (enemyGuy.transform.position.x > enemyDestination) {
+            Debug.Log("Should be Game Over");
         }
     }
 
